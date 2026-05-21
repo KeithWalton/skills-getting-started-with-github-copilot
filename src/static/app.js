@@ -36,11 +36,22 @@ document.addEventListener("DOMContentLoaded", () => {
           details.participants.forEach(email => {
             const li = document.createElement("li");
             li.className = "participant-item";
-            li.innerHTML = `
-              <span class="participant-email">${email}</span>
-              <button class="delete-btn" title="Unregister ${email}" aria-label="Unregister ${email}">&#x1F5D1;</button>
-            `;
-            li.querySelector(".delete-btn").addEventListener("click", async () => {
+
+            const emailSpan = document.createElement("span");
+            emailSpan.className = "participant-email";
+            emailSpan.textContent = email;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "delete-btn";
+            deleteButton.type = "button";
+            deleteButton.setAttribute("title", `Unregister ${email}`);
+            deleteButton.setAttribute("aria-label", `Unregister ${email}`);
+            deleteButton.textContent = "\u{1F5D1}";
+
+            li.appendChild(emailSpan);
+            li.appendChild(deleteButton);
+
+            deleteButton.addEventListener("click", async () => {
               try {
                 const res = await fetch(
                   `/activities/${encodeURIComponent(name)}/signup?email=${encodeURIComponent(email)}`,

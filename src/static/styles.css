@@ -123,6 +123,14 @@ section h3 {
   background: none;
 }
 
+.delete-btn:focus-visible {
+  opacity: 1;
+  outline: 2px solid #1a237e;
+  outline-offset: 2px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.2);
+}
+
 .participants-list li.no-participants {
   font-size: 14px;
   color: #999;
